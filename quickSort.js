@@ -56,3 +56,5 @@ const quickSortInPlace = (array) => {
     ...quickSortInPlace(array.slice(low, end + 1)),
   ];
 };
+
+module.exports = { quickSort, quickSortInPlace };
