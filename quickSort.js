@@ -42,6 +42,9 @@ const quickSortInPlace = (array) => {
     const temp = array[low];
     array[low] = array[high];
     array[high] = temp;
+
+    low += 1;
+    high -= 1;
   }
 
   array[start] = array[high];
