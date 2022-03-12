@@ -8,21 +8,29 @@ const getArray = (n) => {
   return [...Array(n)].map((_) => randomNumber());
 };
 
+const sort = (sortFn, array) => {
+  const start = new Date();
+  const sortedArray = sortFn(array);
+  const end = new Date();
+  const sortTime = end.getTime() - start.getTime();
+
+  return { sortedArray, sortTime };
+};
+
+const printResult = (sortMethod, sortResult) => {
+  console.log(`${sortMethod} 정렬 시간 : ${sortResult.sortTime}`);
+};
+
 const array = getArray(10000);
 
-const quickSortStart = new Date();
-const quickSortResult = quickSort(array);
-const quickSortEnd = new Date();
-const quickSortTime = quickSortEnd.getTime() - quickSortStart.getTime();
-console.log(`quickSort 정렬 시간 : ${quickSortTime}`);
+const quickSortResult = sort(quickSort, array);
+printResult("quickSort", quickSortResult);
 
-const quickSortInPlaceStart = new Date();
-const quickSortInPlaceResult = quickSortInPlace(array);
-const quickSortInPlaceEnd = new Date();
-const quickSortInPlaceTime =
-  quickSortInPlaceEnd.getTime() - quickSortInPlaceStart.getTime();
-console.log(`quickSortInPlace 정렬 시간 : ${quickSortInPlaceTime}`);
+const quickSortInPlaceResult = sort(quickSortInPlace, array);
+printResult("quickSortInPlace", quickSortInPlaceResult);
 
 console.log(
-  `${quickSortResult.every((it, idx) => it === quickSortInPlaceResult[idx])}`
+  `${quickSortResult.sortedArray.every(
+    (it, idx) => it === quickSortInPlaceResult.sortedArray[idx]
+  )}`
 );
