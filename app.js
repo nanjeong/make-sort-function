@@ -1,4 +1,5 @@
-const { quickSort, quickSortInPlace } = require("./quickSort.js");
+const { quickSort, quickSortInPlace } = require("./quick-sort.js");
+const { mergeSort } = require("./merge-sort.js");
 
 const randomNumber = (min = -1000000, max = 1000000) => {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -29,8 +30,17 @@ printResult("quickSort", quickSortResult);
 const quickSortInPlaceResult = sort(quickSortInPlace, array);
 printResult("quickSortInPlace", quickSortInPlaceResult);
 
+const mergeSortResult = sort(mergeSort, array);
+printResult("mergeSort", mergeSortResult);
+
 console.log(
   `${quickSortResult.sortedArray.every(
     (it, idx) => it === quickSortInPlaceResult.sortedArray[idx]
+  )}`
+);
+
+console.log(
+  `${quickSortResult.sortedArray.every(
+    (it, idx) => it === mergeSortResult.sortedArray[idx]
   )}`
 );
